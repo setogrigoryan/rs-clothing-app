@@ -7,83 +7,206 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root {
-            --bg-color: var(--tg-theme-bg-color, #f8f9fa);
-            --card-bg: var(--tg-theme-secondary-bg-color, #ffffff);
-            --text-color: var(--tg-theme-text-color, #1a1a1a);
-            --hint-color: var(--tg-theme-hint-color, #707579);
-            --button-color: var(--tg-theme-button-color, #3390ec);
-            --button-text: var(--tg-theme-button-text-color, #ffffff);
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            --danger: #f43f5e;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', Roboto, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-color);
+            color: var(--text-main);
             margin: 0;
             padding: 16px;
             box-sizing: border-box;
         }
 
-        .header { text-align: center; margin-bottom: 20px; }
-        .header h1 { font-size: 22px; margin: 0; }
-        .badge {
-            display: inline-block;
-            background-color: #ff9800;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-top: 5px;
+        /* Header UI */
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
         }
 
+        .header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            margin: 0;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Admin Box (Form) */
         .admin-box {
-            background-color: var(--card-bg);
-            border: 2px dashed #ff9800;
-            border-radius: 16px;
-            padding: 15px;
-            margin-bottom: 20px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 24px;
             display: none;
         }
 
-        .admin-box input, .admin-box textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-sizing: border-box;
+        .admin-box h3 {
+            margin-top: 0;
+            color: var(--accent);
+            font-size: 18px;
         }
 
-        .product-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .admin-box input[type="text"],
+        .admin-box input[type="number"],
+        .admin-box textarea {
+            width: 100%;
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            background: rgba(56, 189, 248, 0.1);
+            border: 2px dashed var(--accent);
             padding: 16px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 12px;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            left: 0; top: 0; width: 100%; height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gallery-container {
+            position: relative;
+            margin-bottom: 12px;
         }
 
         .main-img {
             width: 100%;
-            height: 220px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 10px;
+            border-radius: 16px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
 
+        .thumbnails {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            overflow-x: auto;
+        }
+
+        .thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.5;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .thumb.active {
+            opacity: 1;
+            border-color: var(--accent);
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 8px 0 4px 0;
+            letter-spacing: -0.3px;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .product-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        /* Buttons */
         .btn {
             width: 100%;
-            background-color: var(--button-color);
-            color: var(--button-text);
+            background: var(--accent-gradient);
+            color: #0f172a;
             border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 600;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            transition: transform 0.1s;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
         }
 
         .btn-delete {
-            background-color: #e53935;
+            background: rgba(244, 63, 94, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+            box-shadow: none;
             margin-top: 8px;
         }
     </style>
@@ -91,18 +214,38 @@
 <body>
 
     <div class="header">
-        <h1>✨ RS Clothing Shop</h1>
+        <h1>✨ RS CLOTHING</h1>
         <div id="role-badge"></div>
     </div>
 
     <!-- ԱԴՄԻՆ ՊԱՆԵԼ -->
     <div id="admin-panel" class="admin-box">
-        <h3>👑 Ադմին Պանել (Ավելացնել ապրանք)</h3>
-        <input type="text" id="p-name" placeholder="Ապրանքի անունը">
-        <input type="number" id="p-price" placeholder="Գինը (դրամ)">
-        <input type="text" id="p-img" placeholder="Նկարի հղումը (URL)">
-        <textarea id="p-desc" placeholder="Նկարագրություն"></textarea>
-        <button class="btn" onclick="addNewProduct()">➕ Ավելացնել Խանութում</button>
+        <h3>👑 Ավելացնել Նոր Ապրանք</h3>
+        
+        <div class="input-group">
+            <label>Ապրանքի անվանումը</label>
+            <input type="text" id="p-name" placeholder="օր․ RS Oversize Black Hoodie">
+        </div>
+
+        <div class="input-group">
+            <label>Գինը (Դրամ)</label>
+            <input type="number" id="p-price" placeholder="օր․ 15000">
+        </div>
+
+        <div class="input-group">
+            <label>Նկարներ գալերեայից (կարող ես նշել մի քանիսը)</label>
+            <div class="file-input-wrapper">
+                <span id="file-label">📸 Ընտրել նկարներ հեռախոսից</span>
+                <input type="file" id="p-files" accept="image/*" multiple onchange="updateFileLabel()">
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label>Նկարագրություն</label>
+            <textarea id="p-desc" rows="3" placeholder="Ապրանքի մասին տեղեկություն..."></textarea>
+        </div>
+
+        <button class="btn" onclick="addNewProduct()">➕ Հրապարակել Խանութում</button>
     </div>
 
     <!-- ԱՊՐԱՆՔՆԵՐԻ ՑՈՒՑԱԿ -->
@@ -112,24 +255,20 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        // 🎯 ՔՈ ԻՐԱԿԱՆ TELEGRAM ID-Ն
+        // 🎯 ՔՈ TELEGRAM ID-Ն
         const ADMIN_ID = 1019650128;
 
-        // Ստանում ենք օգտատիրոջ Telegram ID-ն
         const user = tg.initDataUnsafe?.user;
         const currentUserId = user ? user.id : null;
-        
-        // Ստուգում ենք՝ ադմի՞նն է, թե՞ ոչ
         let isAdmin = (currentUserId === ADMIN_ID);
 
-        // Սկզբնական ապրանք
         let defaultProducts = [
             {
                 id: 1,
                 name: "RS Oversize Black Hoodie",
                 price: 15000,
-                img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500",
-                desc: "100% բամբակյա oversize հուդի:"
+                desc: "100% բամբակյա premium oversize հուդի:",
+                images: ["https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500"]
             }
         ];
 
@@ -137,34 +276,53 @@
 
         function initApp() {
             const badge = document.getElementById('role-badge');
-            
             if (isAdmin) {
                 badge.innerHTML = `<span class="badge">👑 ԱԴՄԻՆ ՌԵԺԻՄ</span>`;
                 document.getElementById('admin-panel').style.display = 'block';
             } else {
-                badge.innerHTML = `<span style="color: var(--hint-color); font-size: 13px;">Գնորդի ռեժիմ</span>`;
+                badge.innerHTML = `<span style="color: var(--text-muted); font-size: 12px;">Գնորդի ռեժիմ</span>`;
             }
-
             renderProducts();
+        }
+
+        function updateFileLabel() {
+            const input = document.getElementById('p-files');
+            const label = document.getElementById('file-label');
+            if (input.files.length > 0) {
+                label.innerText = `✅ Ընտրված է ${input.files.length} նկար`;
+            }
         }
 
         function renderProducts() {
             const container = document.getElementById('products-container');
             container.innerHTML = '';
 
-            products.forEach((product, index) => {
+            products.forEach((product, pIndex) => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
 
+                let thumbsHTML = '';
+                if (product.images && product.images.length > 1) {
+                    product.images.forEach((img, iIndex) => {
+                        thumbsHTML += `
+                            <img src="${img}" class="thumb ${iIndex === 0 ? 'active' : ''}" 
+                                 onclick="changeImage(this, 'main-img-${pIndex}', '${img}')">
+                        `;
+                    });
+                }
+
                 let deleteBtn = isAdmin ? `
-                    <button class="btn btn-delete" onclick="deleteProduct(${index})">🗑️ Ջնջել ապրանքը</button>
+                    <button class="btn btn-delete" onclick="deleteProduct(${pIndex})">🗑️ Ջնջել ապրանքը</button>
                 ` : '';
 
                 card.innerHTML = `
-                    <img src="${product.img}" class="main-img" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <div style="font-weight: bold; color: #2e7d32; margin-bottom: 5px;">${product.price.toLocaleString()} Դրամ</div>
-                    <p style="font-size: 13px; color: var(--hint-color);">${product.desc}</p>
+                    <div class="gallery-container">
+                        <img src="${product.images[0]}" id="main-img-${pIndex}" class="main-img">
+                        ${thumbsHTML ? `<div class="thumbnails">${thumbsHTML}</div>` : ''}
+                    </div>
+                    <div class="product-title">${product.name}</div>
+                    <div class="product-price">${product.price.toLocaleString()} Դրամ</div>
+                    <div class="product-desc">${product.desc}</div>
                     ${!isAdmin ? `<button class="btn" onclick="sendOrder('${product.name}', ${product.price})">🛒 Պատվիրել</button>` : ''}
                     ${deleteBtn}
                 `;
@@ -173,27 +331,54 @@
             });
         }
 
-        function addNewProduct() {
+        function changeImage(thumbEl, mainImgId, newSrc) {
+            document.getElementById(mainImgId).src = newSrc;
+            const parent = thumbEl.parentElement;
+            parent.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            thumbEl.classList.add('active');
+        }
+
+        // Նկարները ֆայլերից Base64 կոնվերտ անելու ֆունկցիա
+        async function addNewProduct() {
             const name = document.getElementById('p-name').value;
             const price = document.getElementById('p-price').value;
-            const img = document.getElementById('p-img').value;
             const desc = document.getElementById('p-desc').value;
+            const fileInput = document.getElementById('p-files');
 
-            if (!name || !price || !img) {
-                alert("Խնդրում ենք լրացնել անունը, գինը և նկարի հղումը!");
+            if (!name || !price || fileInput.files.length === 0) {
+                alert("Խնդրում ենք լրացնել անունը, գինը և ընտրել գոնե 1 նկար!");
                 return;
             }
 
-            const newProd = { id: Date.now(), name, price: Number(price), img, desc };
+            const imagePromises = Array.from(fileInput.files).map(file => {
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.readAsDataURL(file);
+                });
+            });
+
+            const base64Images = await Promise.all(imagePromises);
+
+            const newProd = {
+                id: Date.now(),
+                name,
+                price: Number(price),
+                desc,
+                images: base64Images
+            };
+
             products.push(newProd);
-            
             localStorage.setItem('rs_products', JSON.stringify(products));
+            
             renderProducts();
 
+            // Reset inputs
             document.getElementById('p-name').value = '';
             document.getElementById('p-price').value = '';
-            document.getElementById('p-img').value = '';
             document.getElementById('p-desc').value = '';
+            fileInput.value = '';
+            document.getElementById('file-label').innerText = '📸 Ընտրել նկարներ հեռախոսից';
         }
 
         function deleteProduct(index) {
