@@ -22,6 +22,7 @@
             color: var(--text-main);
             margin: 0;
             padding: 16px;
+            padding-bottom: 90px;
             box-sizing: border-box;
         }
 
@@ -30,224 +31,141 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             padding-bottom: 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .logo-container { display: flex; align-items: center; gap: 10px; }
         .logo-box {
-            width: 42px;
-            height: 42px;
+            width: 42px; height: 42px;
             background: var(--accent-gradient);
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 18px;
-            color: #0f172a;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 18px; color: #0f172a;
             box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
-            letter-spacing: -1px;
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
         }
 
         .logo-title {
-            font-size: 18px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
+            font-size: 18px; font-weight: 800;
             background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
+        .logo-sub { font-size: 10px; color: var(--text-muted); letter-spacing: 2px; }
 
-        .logo-sub {
-            font-size: 10px;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .badge {
-            background: rgba(245, 158, 11, 0.15);
-            color: #fbbf24;
+        .role-badge {
+            background: rgba(245, 158, 11, 0.15); color: #fbbf24;
             border: 1px solid rgba(245, 158, 11, 0.3);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
+            padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700;
         }
 
         /* Search Bar */
-        .search-box {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
+        .search-box { position: relative; margin-bottom: 12px; }
         .search-input {
-            width: 100%;
-            background: var(--card-bg);
+            width: 100%; background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 16px 12px 42px;
-            border-radius: 14px;
-            color: white;
-            font-size: 14px;
-            outline: none;
-            box-sizing: border-box;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: border-color 0.2s;
+            padding: 12px 16px 12px 42px; border-radius: 14px;
+            color: white; font-size: 14px; outline: none; box-sizing: border-box;
         }
+        .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: 0.6; }
 
-        .search-input:focus {
-            border-color: var(--accent);
+        /* Categories Bar */
+        .categories-bar {
+            display: flex; gap: 8px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 4px;
         }
-
-        .search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 16px;
-            opacity: 0.6;
+        .cat-chip {
+            background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted); padding: 8px 14px; border-radius: 20px;
+            font-size: 13px; font-weight: 600; white-space: nowrap; cursor: pointer;
+        }
+        .cat-chip.active {
+            background: var(--accent-gradient); color: #0f172a; border-color: transparent;
         }
 
         /* Admin Box */
         .admin-box {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 24px;
-            display: none;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px; padding: 20px; margin-bottom: 24px; display: none;
         }
-
-        .admin-box h3 { margin-top: 0; color: var(--accent); font-size: 18px; }
-
+        .admin-box h3 { margin-top: 0; color: var(--accent); }
         .input-group { margin-bottom: 12px; }
         .input-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
-
-        .admin-box input[type="text"],
-        .admin-box input[type="number"],
-        .admin-box textarea {
-            width: 100%;
-            background: #0f172a;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: white;
-            padding: 12px;
-            border-radius: 12px;
-            box-sizing: border-box;
-            font-size: 14px;
-            outline: none;
+        .admin-box input, .admin-box textarea, .admin-box select {
+            width: 100%; background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white; padding: 12px; border-radius: 12px; box-sizing: border-box; font-size: 14px; outline: none;
         }
-
         .file-input-wrapper {
-            position: relative;
-            background: rgba(56, 189, 248, 0.1);
-            border: 2px dashed var(--accent);
-            padding: 16px;
-            border-radius: 12px;
-            text-align: center;
-            cursor: pointer;
-            margin-bottom: 12px;
+            position: relative; background: rgba(56, 189, 248, 0.1);
+            border: 2px dashed var(--accent); padding: 16px; border-radius: 12px; text-align: center; cursor: pointer;
         }
-
-        .file-input-wrapper input[type="file"] {
-            position: absolute;
-            left: 0; top: 0; width: 100%; height: 100%;
-            opacity: 0;
-            cursor: pointer;
-        }
+        .file-input-wrapper input { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; }
 
         /* Product Cards */
         .product-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 16px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--card-bg); border-radius: 20px; padding: 16px; margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+            position: relative;
         }
-
-        .gallery-container { position: relative; margin-bottom: 12px; }
-
-        .main-img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 16px;
+        .gallery-container { position: relative; }
+        .main-img { width: 100%; height: 240px; object-fit: cover; border-radius: 16px; }
+        
+        /* 🏷️ BADGE STYLE */
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 5;
         }
+        .badge-sale { background: #f43f5e; color: white; }
+        .badge-new { background: #10b981; color: white; }
+        .badge-top { background: #f59e0b; color: #0f172a; }
 
-        .thumbnails {
-            display: flex;
-            gap: 8px;
-            margin-top: 8px;
-            overflow-x: auto;
-        }
-
-        .thumb {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            object-fit: cover;
-            cursor: pointer;
-            opacity: 0.5;
-            border: 2px solid transparent;
-            transition: all 0.2s;
-        }
-
+        .thumbnails { display: flex; gap: 8px; margin-top: 8px; overflow-x: auto; }
+        .thumb { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; opacity: 0.5; border: 2px solid transparent; }
         .thumb.active { opacity: 1; border-color: var(--accent); }
 
-        .product-title { font-size: 20px; font-weight: 700; margin: 8px 0 4px 0; }
-
+        .product-title { font-size: 19px; font-weight: 700; margin: 10px 0 4px 0; }
         .product-price {
-            font-size: 18px;
-            font-weight: 800;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 17px; font-weight: 800;
+            background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
         }
 
-        .product-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+        /* Size Selector */
+        .size-container { margin: 12px 0; }
+        .size-title { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+        .size-options { display: flex; gap: 6px; }
+        .size-btn {
+            background: #0f172a; border: 1px solid rgba(255,255,255,0.15); color: white;
+            padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer;
+        }
+        .size-btn.active {
+            border-color: var(--accent); background: rgba(56, 189, 248, 0.2); color: var(--accent);
+        }
+
+        .product-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
 
         .btn {
-            width: 100%;
-            background: var(--accent-gradient);
-            color: #0f172a;
-            border: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            width: 100%; background: var(--accent-gradient); color: #0f172a; border: none;
+            padding: 12px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer;
         }
+        .btn-delete { background: rgba(244, 63, 94, 0.15); color: var(--danger); border: 1px solid rgba(244, 63, 94, 0.3); margin-top: 8px; }
 
-        .btn:active { transform: scale(0.98); }
-
-        .btn-delete {
-            background: rgba(244, 63, 94, 0.15);
-            color: var(--danger);
-            border: 1px solid rgba(244, 63, 94, 0.3);
-            box-shadow: none;
-            margin-top: 8px;
-        }
-
-        .no-results {
-            text-align: center;
-            color: var(--text-muted);
-            padding: 30px;
-            font-size: 14px;
+        /* Floating Cart Bar */
+        .cart-bar {
+            position: fixed; bottom: 16px; left: 16px; right: 16px;
+            background: var(--accent-gradient); color: #0f172a;
+            padding: 14px 20px; border-radius: 16px;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.5);
+            font-weight: 800; cursor: pointer; display: none; z-index: 100;
         }
     </style>
 </head>
@@ -257,9 +175,9 @@
     <div class="header">
         <div class="logo-container">
             <div class="logo-box">RS</div>
-            <div class="logo-text">
-                <span class="logo-title">RS STORE</span>
-                <span class="logo-sub">CLOTHING</span>
+            <div>
+                <div class="logo-title">RS STORE</div>
+                <div class="logo-sub">CLOTHING</div>
             </div>
         </div>
         <div id="role-badge"></div>
@@ -268,7 +186,15 @@
     <!-- SEARCH BAR -->
     <div class="search-box">
         <span class="search-icon">🔍</span>
-        <input type="text" id="search-input" class="search-input" placeholder="Փնտրել հագուստ..." oninput="filterProducts()">
+        <input type="text" id="search-input" class="search-input" placeholder="Փնտրել հագուստ..." oninput="applyFilters()">
+    </div>
+
+    <!-- CATEGORIES BAR -->
+    <div class="categories-bar">
+        <div class="cat-chip active" onclick="setCategory('all', this)">✨ Բոլորը</div>
+        <div class="cat-chip" onclick="setCategory('hoodie', this)">🧥 Հուդիներ</div>
+        <div class="cat-chip" onclick="setCategory('pants', this)">👖 Տաբատներ</div>
+        <div class="cat-chip" onclick="setCategory('tshirt', this)">👕 T-Shirts</div>
     </div>
 
     <!-- ADMIN PANEL -->
@@ -281,6 +207,26 @@
         </div>
 
         <div class="input-group">
+            <label>Կատեգորիա</label>
+            <select id="p-cat">
+                <option value="hoodie">Հուդի</option>
+                <option value="pants">Տաբատ</option>
+                <option value="tshirt">T-Shirt</option>
+            </select>
+        </div>
+
+        <!-- 🏷️ BADGE SELECTION -->
+        <div class="input-group">
+            <label>Badge (Նշան նկարի վրա)</label>
+            <select id="p-badge">
+                <option value="none">Առանց badge-ի</option>
+                <option value="new">✨ NEW (Նորույթ)</option>
+                <option value="sale">🔥 SALE (Զեղչ)</option>
+                <option value="top">⚡ TOP (Ամենավաճառվող)</option>
+            </select>
+        </div>
+
+        <div class="input-group">
             <label>Գինը (Դրամ)</label>
             <input type="number" id="p-price" placeholder="օր․ 15000">
         </div>
@@ -288,14 +234,14 @@
         <div class="input-group">
             <label>Նկարներ գալերեայից</label>
             <div class="file-input-wrapper">
-                <span id="file-label">📸 Ընտրել նկարներ հեռախոսից</span>
+                <span id="file-label">📸 Ընտրել նկարներ</span>
                 <input type="file" id="p-files" accept="image/*" multiple onchange="updateFileLabel()">
             </div>
         </div>
 
         <div class="input-group">
             <label>Նկարագրություն</label>
-            <textarea id="p-desc" rows="3" placeholder="Ապրանքի մասին տեղեկություն..."></textarea>
+            <textarea id="p-desc" rows="2" placeholder="Ապրանքի մասին տեղեկություն..."></textarea>
         </div>
 
         <button class="btn" onclick="addNewProduct()">➕ Հրապարակել Խանութում</button>
@@ -304,20 +250,31 @@
     <!-- PRODUCTS CONTAINER -->
     <div id="products-container"></div>
 
+    <!-- FLOATING CART BAR -->
+    <div id="cart-bar" class="cart-bar" onclick="sendCartOrder()">
+        <div>🛒 ԶԱՄԲՅՈՒՂ (<span id="cart-count">0</span>)</div>
+        <div><span id="cart-total">0</span> ԴՐԱՄ ➔</div>
+    </div>
+
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
 
         const ADMIN_ID = 1019650128;
-
         const user = tg.initDataUnsafe?.user;
         const currentUserId = user ? user.id : null;
         let isAdmin = (currentUserId === ADMIN_ID);
+
+        let activeCategory = 'all';
+        let selectedSizes = {};
+        let cart = [];
 
         let defaultProducts = [
             {
                 id: 1,
                 name: "RS Oversize Black Hoodie",
+                category: "hoodie",
+                badge: "new",
                 price: 15000,
                 desc: "100% բամբակյա premium oversize հուդի:",
                 images: ["https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500"]
@@ -329,59 +286,86 @@
         function initApp() {
             const badge = document.getElementById('role-badge');
             if (isAdmin) {
-                badge.innerHTML = `<span class="badge">👑 ԱԴՄԻՆ</span>`;
+                badge.innerHTML = `<span class="role-badge">👑 ԱԴՄԻՆ</span>`;
                 document.getElementById('admin-panel').style.display = 'block';
-            } else {
-                badge.innerHTML = `<span style="color: var(--text-muted); font-size: 11px;">Գնորդ</span>`;
             }
-            renderProducts(products);
+            applyFilters();
         }
 
-        function updateFileLabel() {
-            const input = document.getElementById('p-files');
-            const label = document.getElementById('file-label');
-            if (input.files.length > 0) {
-                label.innerText = `✅ Ընտրված է ${input.files.length} նկար`;
-            }
+        function setCategory(cat, el) {
+            activeCategory = cat;
+            document.querySelectorAll('.cat-chip').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            applyFilters();
         }
 
-        function renderProducts(itemsToRender) {
+        function selectSize(pId, size, el) {
+            selectedSizes[pId] = size;
+            const parent = el.parentElement;
+            parent.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            let filtered = products.filter(p => {
+                const matchCat = (activeCategory === 'all' || p.category === activeCategory);
+                const matchQuery = p.name.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query);
+                return matchCat && matchQuery;
+            });
+            renderProducts(filtered);
+        }
+
+        function renderProducts(items) {
             const container = document.getElementById('products-container');
             container.innerHTML = '';
 
-            if (itemsToRender.length === 0) {
-                container.innerHTML = `<div class="no-results">❌ Ոչինչ չգտնվեց:</div>`;
+            if (items.length === 0) {
+                container.innerHTML = `<div style="text-align:center; color:var(--text-muted); padding:30px;">❌ Ապրանք չգտնվեց:</div>`;
                 return;
             }
 
-            itemsToRender.forEach((product, pIndex) => {
+            items.forEach((p) => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
 
                 let thumbsHTML = '';
-                if (product.images && product.images.length > 1) {
-                    product.images.forEach((img, iIndex) => {
-                        thumbsHTML += `
-                            <img src="${img}" class="thumb ${iIndex === 0 ? 'active' : ''}" 
-                                 onclick="changeImage(this, 'main-img-${pIndex}', '${img}')">
-                        `;
+                if (p.images && p.images.length > 1) {
+                    p.images.forEach((img, iIndex) => {
+                        thumbsHTML += `<img src="${img}" class="thumb ${iIndex === 0 ? 'active' : ''}" onclick="changeImage(this, 'main-img-${p.id}', '${img}')">`;
                     });
                 }
 
-                let deleteBtn = isAdmin ? `
-                    <button class="btn btn-delete" onclick="deleteProduct(${product.id})">🗑️ Ջնջել ապրանքը</button>
-                ` : '';
+                if (!selectedSizes[p.id]) selectedSizes[p.id] = 'M';
+
+                // Badge HTML Generation
+                let badgeHTML = '';
+                if (p.badge === 'new') badgeHTML = `<div class="product-badge badge-new">✨ NEW</div>`;
+                else if (p.badge === 'sale') badgeHTML = `<div class="product-badge badge-sale">🔥 SALE</div>`;
+                else if (p.badge === 'top') badgeHTML = `<div class="product-badge badge-top">⚡ TOP</div>`;
 
                 card.innerHTML = `
                     <div class="gallery-container">
-                        <img src="${product.images[0]}" id="main-img-${pIndex}" class="main-img">
+                        ${badgeHTML}
+                        <img src="${p.images[0]}" id="main-img-${p.id}" class="main-img">
                         ${thumbsHTML ? `<div class="thumbnails">${thumbsHTML}</div>` : ''}
                     </div>
-                    <div class="product-title">${product.name}</div>
-                    <div class="product-price">${product.price.toLocaleString()} Դրամ</div>
-                    <div class="product-desc">${product.desc}</div>
-                    ${!isAdmin ? `<button class="btn" onclick="sendOrder('${product.name}', ${product.price})">🛒 Պատվիրել</button>` : ''}
-                    ${deleteBtn}
+                    <div class="product-title">${p.name}</div>
+                    <div class="product-price">${p.price.toLocaleString()} Դրամ</div>
+                    
+                    <div class="size-container">
+                        <div class="size-title">Ընտրեք չափսը․</div>
+                        <div class="size-options">
+                            ${['S','M','L','XL','XXL'].map(sz => `
+                                <button class="size-btn ${selectedSizes[p.id] === sz ? 'active' : ''}" 
+                                        onclick="selectSize(${p.id}, '${sz}', this)">${sz}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <div class="product-desc">${p.desc}</div>
+                    ${!isAdmin ? `<button class="btn" onclick="addToCart(${p.id})">🛒 Ավելացնել Զամբյուղում</button>` : ''}
+                    ${isAdmin ? `<button class="btn btn-delete" onclick="deleteProduct(${p.id})">🗑️ Ջնջել</button>` : ''}
                 `;
 
                 container.appendChild(card);
@@ -395,24 +379,59 @@
             thumbEl.classList.add('active');
         }
 
-        // Search Filter Logic
-        function filterProducts() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const filtered = products.filter(p => 
-                p.name.toLowerCase().includes(query) || 
-                p.desc.toLowerCase().includes(query)
-            );
-            renderProducts(filtered);
+        function addToCart(pId) {
+            const product = products.find(p => p.id === pId);
+            const size = selectedSizes[pId] || 'M';
+
+            cart.push({
+                name: product.name,
+                price: product.price,
+                size: size
+            });
+
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const bar = document.getElementById('cart-bar');
+            if (cart.length > 0) {
+                bar.style.display = 'flex';
+                document.getElementById('cart-count').innerText = cart.length;
+                const total = cart.reduce((sum, item) => sum + item.price, 0);
+                document.getElementById('cart-total').innerText = total.toLocaleString();
+            } else {
+                bar.style.display = 'none';
+            }
+        }
+
+        function sendCartOrder() {
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            const data = {
+                orderType: "cart_order",
+                items: cart,
+                totalPrice: total
+            };
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        }
+
+        function updateFileLabel() {
+            const input = document.getElementById('p-files');
+            if (input.files.length > 0) {
+                document.getElementById('file-label').innerText = `✅ Ընտրված է ${input.files.length} նկար`;
+            }
         }
 
         async function addNewProduct() {
             const name = document.getElementById('p-name').value;
+            const cat = document.getElementById('p-cat').value;
+            const badgeVal = document.getElementById('p-badge').value;
             const price = document.getElementById('p-price').value;
             const desc = document.getElementById('p-desc').value;
             const fileInput = document.getElementById('p-files');
 
             if (!name || !price || fileInput.files.length === 0) {
-                alert("Խնդրում ենք լրացնել անունը, գինը և ընտրել գոնե 1 նկար!");
+                alert("Խնդրում ենք լրացնել բոլոր դաշտերը!");
                 return;
             }
 
@@ -429,6 +448,8 @@
             const newProd = {
                 id: Date.now(),
                 name,
+                category: cat,
+                badge: badgeVal,
                 price: Number(price),
                 desc,
                 images: base64Images
@@ -436,26 +457,19 @@
 
             products.push(newProd);
             localStorage.setItem('rs_products', JSON.stringify(products));
-            
-            renderProducts(products);
+            applyFilters();
 
             document.getElementById('p-name').value = '';
             document.getElementById('p-price').value = '';
             document.getElementById('p-desc').value = '';
             fileInput.value = '';
-            document.getElementById('file-label').innerText = '📸 Ընտրել նկարներ հեռախոսից';
+            document.getElementById('file-label').innerText = '📸 Ընտրել նկարներ';
         }
 
         function deleteProduct(id) {
             products = products.filter(p => p.id !== id);
             localStorage.setItem('rs_products', JSON.stringify(products));
-            filterProducts();
-        }
-
-        function sendOrder(itemName, price) {
-            const data = { item: itemName, price: price };
-            tg.sendData(JSON.stringify(data));
-            tg.close();
+            applyFilters();
         }
 
         initApp();
