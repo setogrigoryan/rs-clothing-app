@@ -39,10 +39,11 @@
 
         .admin-box {
             background-color: var(--card-bg);
-            border: 2px dashed var(--button-color);
+            border: 2px dashed #ff9800;
             border-radius: 16px;
             padding: 15px;
             margin-bottom: 20px;
+            display: none;
         }
 
         .admin-box input, .admin-box textarea {
@@ -83,7 +84,7 @@
 
         .btn-delete {
             background-color: #e53935;
-            margin-top: 5px;
+            margin-top: 8px;
         }
     </style>
 </head>
@@ -94,8 +95,8 @@
         <div id="role-badge"></div>
     </div>
 
-    <!-- ԱԴՄԻՆ ՊԱՆԵԼ (Երևում է միայն ադմինին) -->
-    <div id="admin-panel" class="admin-box" style="display: none;">
+    <!-- ԱԴՄԻՆ ՊԱՆԵԼ -->
+    <div id="admin-panel" class="admin-box">
         <h3>👑 Ադմին Պանել (Ավելացնել ապրանք)</h3>
         <input type="text" id="p-name" placeholder="Ապրանքի անունը">
         <input type="number" id="p-price" placeholder="Գինը (դրամ)">
@@ -111,15 +112,17 @@
         const tg = window.Telegram.WebApp;
         tg.expand();
 
-        // ⚠️ ՔՈ Telegram ID-ն
+        // 🎯 ՔՈ ԻՐԱԿԱՆ TELEGRAM ID-Ն
         const ADMIN_ID = 1019650128;
 
-        // Ստանում ենք մտնող օգտատիրոջ Telegram ID-ն
+        // Ստանում ենք օգտատիրոջ Telegram ID-ն
         const user = tg.initDataUnsafe?.user;
         const currentUserId = user ? user.id : null;
-        const isAdmin = (currentUserId === ADMIN_ID);
+        
+        // Ստուգում ենք՝ ադմի՞նն է, թե՞ ոչ
+        let isAdmin = (currentUserId === ADMIN_ID);
 
-        // Սկզբնական ապրանքներ (եթե LocalStorage-ում դեռ չկան)
+        // Սկզբնական ապրանք
         let defaultProducts = [
             {
                 id: 1,
@@ -130,7 +133,6 @@
             }
         ];
 
-        // Բեռնում ենք ապրանքները (հիշողությունից)
         let products = JSON.parse(localStorage.getItem('rs_products')) || defaultProducts;
 
         function initApp() {
@@ -154,7 +156,7 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
 
-                let adminButtons = isAdmin ? `
+                let deleteBtn = isAdmin ? `
                     <button class="btn btn-delete" onclick="deleteProduct(${index})">🗑️ Ջնջել ապրանքը</button>
                 ` : '';
 
@@ -164,14 +166,13 @@
                     <div style="font-weight: bold; color: #2e7d32; margin-bottom: 5px;">${product.price.toLocaleString()} Դրամ</div>
                     <p style="font-size: 13px; color: var(--hint-color);">${product.desc}</p>
                     ${!isAdmin ? `<button class="btn" onclick="sendOrder('${product.name}', ${product.price})">🛒 Պատվիրել</button>` : ''}
-                    ${adminButtons}
+                    ${deleteBtn}
                 `;
 
                 container.appendChild(card);
             });
         }
 
-        // Ադմինի կողմից նոր ապրանք ավելացնելը
         function addNewProduct() {
             const name = document.getElementById('p-name').value;
             const price = document.getElementById('p-price').value;
@@ -186,26 +187,21 @@
             const newProd = { id: Date.now(), name, price: Number(price), img, desc };
             products.push(newProd);
             
-            // Պահպանում ենք LocalStorage-ում
             localStorage.setItem('rs_products', JSON.stringify(products));
-            
             renderProducts();
 
-            // Մաքրում ենք input-ները
             document.getElementById('p-name').value = '';
             document.getElementById('p-price').value = '';
             document.getElementById('p-img').value = '';
             document.getElementById('p-desc').value = '';
         }
 
-        // Ջնջել ապրանքը
         function deleteProduct(index) {
             products.splice(index, 1);
             localStorage.setItem('rs_products', JSON.stringify(products));
             renderProducts();
         }
 
-        // Պատվեր ուղարկելը (հաճախորդի համար)
         function sendOrder(itemName, price) {
             const data = { item: itemName, price: price };
             tg.sendData(JSON.stringify(data));
